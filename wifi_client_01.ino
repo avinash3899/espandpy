@@ -16,7 +16,7 @@ void setup() {
 }
 
 void loop () {
-if (client.connect(server,12345))
+if (client.connect(server,8080))
   {
 
     while (client.connected() || client.available())
