@@ -1,4 +1,5 @@
-import socket                
+import socket
+import time
 s = socket.socket()          
 port = 8080              
 s.bind(('', port))         
@@ -11,6 +12,7 @@ while True:
    f=open("gcode.txt", "r")
    for x in f:
    	c.send(x)
+      time.sleep(1)
    	#c.send('\n') 
    f.close()
    c.close()
