@@ -11,9 +11,16 @@ print_lock = threading.Lock()
 def threaded(c): 
 	while True:
 		f=open("gcode.txt", "r")
-		for x in f:
-			c.send(x)
-		f.close()
+		c.send("M20".encode())
+		data=c.recv()
+		if not data :
+			print_lock.release()
+			break
+		if (data.decode())=="OK\n":
+			for x in f:
+				c.send(x.encode())
+			f.close()
+			break
 		#print_lock.release()
 		#break	
 	c.close() 
