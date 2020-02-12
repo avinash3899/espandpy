@@ -11,8 +11,7 @@ while True:
    print 'Got connection from', addr
    f=open("gcode.txt", "r")
    for x in f:
-   	c.send(x)
-      time.sleep(1)
-   	#c.send('\n') 
+   		c.send(x)
+   		#c.send('\n') 
    f.close()
    c.close()
