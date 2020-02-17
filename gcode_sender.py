@@ -4,22 +4,21 @@ s = socket.socket()
 host = ''
 port = 8080
 s.bind((host, port))
-print "socket binded to %s" %(port) 
+print ("socket binded to %s" %(port)) 
 s.listen(1)
-print "Listening"            
+print ("Listening")            
 while True: 
    c, addr = s.accept()      
-   print 'Got connection from', addr
+   print ('Got connection from', addr)
    f=open("gcode.txt", "r")
    for x in f:
-   		c.send(x)
+   		c.send(x.encode())
    		c.settimeout(20)
    		while True:
    			data=c.recv(20)
-   			print data
-   			ack=data
-   			data=""
-   			if "OK" in ack:
+   			ack=data.decode()
+   			print (ack)
+   			if 'OK' in ack:
    				print ("Received :"+ack)
    				break
    		#while True:
